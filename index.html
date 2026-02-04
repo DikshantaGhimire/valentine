@@ -196,7 +196,7 @@
   const noBtn = document.getElementById('noBtn');
   const container = document.getElementById('final-container');
 
-  let yesClickCount = 0;  // <-- TRACK CLICKS
+  let moveCount = 0;   // <-- track TOTAL moves (cursor + mobile)
 
   function setInitialPositions() {
     const cw = container.offsetWidth;
@@ -213,14 +213,7 @@
   window.addEventListener('resize', setInitialPositions);
 
   function moveYes() {
-    yesClickCount++;
-
-    if (yesClickCount >= 10) {
-      yesBtn.style.transition = "all 0.2s ease";
-      yesBtn.removeEventListener('mouseover', moveYes);
-      yesBtn.removeEventListener('touchstart', moveYes);
-      return;
-    }
+    moveCount++;   // increase count every time it moves
 
     const maxX = container.offsetWidth - yesBtn.offsetWidth - 8;
     const maxY = container.offsetHeight - yesBtn.offsetHeight - 8;
@@ -230,11 +223,22 @@
 
     yesBtn.style.left = newX + 'px';
     yesBtn.style.top = newY + 'px';
+
+    // AFTER 10 MOVES → SHOW POPUP
+    if (moveCount >= 10) {
+      setTimeout(() => {
+        alert("YAY SAMITA! 💖 You tried hard… and yes, I'll be your Valentine! 😘");
+      }, 200);
+    }
   }
 
+  // Make it move on DESKTOP (cursor)
   yesBtn.addEventListener('mouseover', moveYes);
+
+  // Make it move on MOBILE (tap)
   yesBtn.addEventListener('touchstart', moveYes);
 
+  // Make NO disappear
   function hideNo() {
     noBtn.style.opacity = '0';
     setTimeout(() => { noBtn.style.display = 'none'; }, 120);
@@ -242,12 +246,6 @@
 
   noBtn.addEventListener('mouseover', hideNo);
   noBtn.addEventListener('touchstart', hideNo);
-
-  yesBtn.addEventListener('click', () => {
-    if (yesClickCount < 10) return;
-
-    alert("YAY SAMITA! 💖 You finally caught me! Happy Valentine's Day!");
-  });
 </script>
 
 </body>
