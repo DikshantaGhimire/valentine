@@ -195,6 +195,7 @@
   const yesBtn = document.getElementById('yesBtn');
   const noBtn = document.getElementById('noBtn');
   const container = document.getElementById('final-container');
+  let yesClickCount = 0;
 
   function setInitialPositions() {
     const cw = container.offsetWidth;
@@ -211,18 +212,33 @@
   window.addEventListener('resize', setInitialPositions);
 
   function moveYes() {
-    const maxX = container.offsetWidth - yesBtn.offsetWidth - 8;
-    const maxY = container.offsetHeight - yesBtn.offsetHeight - 8;
+  yesClickCount++;
 
-    const newX = Math.random() * maxX;
-    const newY = Math.random() * maxY;
-
-    yesBtn.style.left = newX + 'px';
-    yesBtn.style.top = newY + 'px';
+  // After 10 attempts, stop moving and allow click
+  if (yesClickCount >= 10) {
+    yesBtn.style.transition = "all 0.2s ease";
+    yesBtn.removeEventListener('mouseover', moveYes);
+    yesBtn.removeEventListener('touchstart', moveYes);
+    return;
   }
 
-  yesBtn.addEventListener('mouseover', moveYes);
-  yesBtn.addEventListener('touchstart', moveYes);
+  const maxX = container.offsetWidth - yesBtn.offsetWidth - 8;
+  const maxY = container.offsetHeight - yesBtn.offsetHeight - 8;
+
+  const newX = Math.random() * maxX;
+  const newY = Math.random() * maxY;
+
+  yesBtn.style.left = newX + 'px';
+  yesBtn.style.top = newY + 'px';
+  }
+
+  yesBtn.addEventListener('click', () => {
+    if (yesClickCount < 10) {
+      return; // still running away
+    }
+
+    alert("YAY SAMITA! 💖 You finally caught me! Happy Valentine's Day!");
+  });
 
   function hideNo() {
     noBtn.style.opacity = '0';
