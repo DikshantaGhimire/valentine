@@ -115,7 +115,7 @@
   <button class="nav-btn" onclick="startMusicAndGo(2)">Start</button>
 </div>
 
-<!-- PAGE 2 : V3 -->
+<!-- PAGE 2 -->
 <div class="page" id="p2">
   <h2>Question 1</h2>
   <p>If kisses were snowflakes and I sent you a whole storm, what would you do?</p>
@@ -124,7 +124,7 @@
   <button class="nav-btn" onclick="goTo(3)">Dance in it with me ❄️</button>
 </div>
 
-<!-- PAGE 3 : V8 -->
+<!-- PAGE 3 -->
 <div class="page" id="p3">
   <h2>Question 2</h2>
   <p>If I rearranged the alphabet to put “U” and “I” together, would you agree with that love spelling?</p>
@@ -133,7 +133,7 @@
   <button class="nav-btn" onclick="goTo(4)">Absolutely, I love it 💘</button>
 </div>
 
-<!-- PAGE 4 : TRY/CATCH -->
+<!-- PAGE 4 -->
 <div class="page" id="p4">
   <h2>Question 3</h2>
   <p>If our love were a program, should I wrap my heart in a <code>try</code> so I never lose you to a <code>catch</code>?</p>
@@ -142,7 +142,7 @@
   <button class="nav-btn" onclick="goTo(5)">Definitely — keep me in your try</button>
 </div>
 
-<!-- PAGE 5 : HUGS -->
+<!-- PAGE 5 -->
 <div class="page" id="p5">
   <h2>Question 4</h2>
   <p>If you had to choose one — my hugs or my messages — which would you keep forever?</p>
@@ -151,7 +151,7 @@
   <button class="nav-btn" onclick="goTo(6)">Your messages 💬</button>
 </div>
 
-<!-- PAGE 6 : WIFE (NEW #8) -->
+<!-- PAGE 6 -->
 <div class="page" id="p6">
   <h2>Question 5</h2>
   <p>If one day you had to call someone “my person forever,” would that person be me?</p>
@@ -160,7 +160,7 @@
   <button class="nav-btn" onclick="goTo(7)">Obviously — who else? ✨</button>
 </div>
 
-<!-- FINAL PAGE (CORRECTED TO p7) -->
+<!-- FINAL PAGE (p7) -->
 <div class="page" id="p7">
   <h2>Big Question 💍 (kind of)</h2>
   <p>Will you be my Valentine?</p>
@@ -195,7 +195,8 @@
   const yesBtn = document.getElementById('yesBtn');
   const noBtn = document.getElementById('noBtn');
   const container = document.getElementById('final-container');
-  let yesClickCount = 0;
+
+  let yesClickCount = 0;  // <-- TRACK CLICKS
 
   function setInitialPositions() {
     const cw = container.offsetWidth;
@@ -212,33 +213,27 @@
   window.addEventListener('resize', setInitialPositions);
 
   function moveYes() {
-  yesClickCount++;
+    yesClickCount++;
 
-  // After 10 attempts, stop moving and allow click
-  if (yesClickCount >= 10) {
-    yesBtn.style.transition = "all 0.2s ease";
-    yesBtn.removeEventListener('mouseover', moveYes);
-    yesBtn.removeEventListener('touchstart', moveYes);
-    return;
-  }
-
-  const maxX = container.offsetWidth - yesBtn.offsetWidth - 8;
-  const maxY = container.offsetHeight - yesBtn.offsetHeight - 8;
-
-  const newX = Math.random() * maxX;
-  const newY = Math.random() * maxY;
-
-  yesBtn.style.left = newX + 'px';
-  yesBtn.style.top = newY + 'px';
-  }
-
-  yesBtn.addEventListener('click', () => {
-    if (yesClickCount < 10) {
-      return; // still running away
+    if (yesClickCount >= 10) {
+      yesBtn.style.transition = "all 0.2s ease";
+      yesBtn.removeEventListener('mouseover', moveYes);
+      yesBtn.removeEventListener('touchstart', moveYes);
+      return;
     }
 
-    alert("YAY SAMITA! 💖 You finally caught me! Happy Valentine's Day!");
-  });
+    const maxX = container.offsetWidth - yesBtn.offsetWidth - 8;
+    const maxY = container.offsetHeight - yesBtn.offsetHeight - 8;
+
+    const newX = Math.random() * maxX;
+    const newY = Math.random() * maxY;
+
+    yesBtn.style.left = newX + 'px';
+    yesBtn.style.top = newY + 'px';
+  }
+
+  yesBtn.addEventListener('mouseover', moveYes);
+  yesBtn.addEventListener('touchstart', moveYes);
 
   function hideNo() {
     noBtn.style.opacity = '0';
@@ -249,7 +244,9 @@
   noBtn.addEventListener('touchstart', hideNo);
 
   yesBtn.addEventListener('click', () => {
-    alert("YAY! 💖 Happy Valentine's Day!");
+    if (yesClickCount < 10) return;
+
+    alert("YAY SAMITA! 💖 You finally caught me! Happy Valentine's Day!");
   });
 </script>
 
