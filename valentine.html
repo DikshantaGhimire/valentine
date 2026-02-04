@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Be My Valentine?</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #ffe6ef, #ffd1e3);
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      margin: 12px 8px 0 8px;
+    }
+
+    h2 { font-size: 1.3rem; margin: 10px 0; }
+
+    p { font-size: 1rem; margin: 8px 0 12px 0; padding: 0 10px; }
+
+    .page {
+      display: none;
+      padding: 16px 12px 24px 12px;
+      max-width: 100%;
+      margin: 0 auto;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .page.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    img {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      border-radius: 14px;
+      margin: 12px auto;
+      display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .nav-btn {
+      background: #ff4d8d;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 24px;
+      cursor: pointer;
+      margin: 6px;
+      font-size: 15px;
+      width: min(90%, 320px);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-btn:active { transform: scale(0.98); }
+
+    #final-container {
+      position: relative;
+      height: 260px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    #yesBtn, #noBtn {
+      font-size: 16px;
+      padding: 10px 18px;
+      border-radius: 22px;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #yesBtn {
+      background: #ff4d8d;
+      color: white;
+      transition: all 0.15s ease;
+    }
+
+    #noBtn {
+      background: #ddd;
+      color: black;
+    }
+
+    .safe-area {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  </style>
+</head>
+<body>
+<div class="safe-area">
+
+<h1>💖 A Little Valentine Adventure for <strong>cutie Putie Samita!!</strong> 💖</h1>
+
+<!-- Background music -->
+<audio id="bg-music" loop>
+  <source src="tum-hi-ho.mp3" type="audio/mpeg" />
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <h2>Hi boobich 💖</h2>
+  <p>Ready for a tiny Valentine adventure? 😏</p>
+  <img src="https://drive.google.com/thumbnail?id=1sbGhDY4PETLI8K5yAsr6RCcPy0Lgzfk1&sz=w1000" alt="Valentine Image">
+  <button class="nav-btn" onclick="startMusicAndGo(2)">Start</button>
+</div>
+
+<!-- PAGE 2 : V3 -->
+<div class="page" id="p2">
+  <h2>Question 1</h2>
+  <p>If kisses were snowflakes and I sent you a whole storm, what would you do?</p>
+  <img src="https://drive.google.com/thumbnail?id=1V0gC5ULB4ROV-e_6J0lG_Nw9P5mz0hcz&sz=w1000" alt="Valentine photo" />
+  <button class="nav-btn" onclick="goTo(3)">Get happily lost in it 💖</button>
+  <button class="nav-btn" onclick="goTo(3)">Dance in it with me ❄️</button>
+</div>
+
+<!-- PAGE 3 : V8 -->
+<div class="page" id="p3">
+  <h2>Question 2</h2>
+  <p>If I rearranged the alphabet to put “U” and “I” together, would you agree with that love spelling?</p>
+  <img src="https://drive.google.com/thumbnail?id=1mxxRMJlxzsVTasTt6sarpVAGp9ML4PlG&sz=w1000" alt="Valentine photo" />
+  <button class="nav-btn" onclick="goTo(4)">Yes, that’s perfect 😌</button>
+  <button class="nav-btn" onclick="goTo(4)">Absolutely, I love it 💘</button>
+</div>
+
+<!-- PAGE 4 : TRY/CATCH -->
+<div class="page" id="p4">
+  <h2>Question 3</h2>
+  <p>If our love were a program, should I wrap my heart in a <code>try</code> so I never lose you to a <code>catch</code>?</p>
+  <img src="https://drive.google.com/thumbnail?id=1iqJfpg0XXTHIZPnw_vkuVzkjqQ8OxdOi&sz=w1000" alt="Valentine photo" />
+  <button class="nav-btn" onclick="goTo(5)">Yes — that’s perfect code</button>
+  <button class="nav-btn" onclick="goTo(5)">Definitely — keep me in your try</button>
+</div>
+
+<!-- PAGE 5 : HUGS -->
+<div class="page" id="p5">
+  <h2>Question 4</h2>
+  <p>If you had to choose one — my hugs or my messages — which would you keep forever?</p>
+  <img src="https://drive.google.com/thumbnail?id=1yfB3yKIIGU0Y5LMKn0Akw1S2pARDkHTI&sz=w1000" alt="Valentine photo" />
+  <button class="nav-btn" onclick="goTo(6)">Your hugs 🤍</button>
+  <button class="nav-btn" onclick="goTo(6)">Your messages 💬</button>
+</div>
+
+<!-- PAGE 6 : WIFE (NEW #8) -->
+<div class="page" id="p6">
+  <h2>Question 5</h2>
+  <p>If one day you had to call someone “my person forever,” would that person be me?</p>
+  <img src="https://drive.google.com/thumbnail?id=1k9-cAJlNfmpSpOTwsK2frboLwbvjwu2-&sz=w1000" alt="Valentine photo" />
+  <button class="nav-btn" onclick="goTo(7)">Yes — without thinking 🤍</button>
+  <button class="nav-btn" onclick="goTo(7)">Obviously — who else? ✨</button>
+</div>
+
+<!-- FINAL PAGE (CORRECTED TO p7) -->
+<div class="page" id="p7">
+  <h2>Big Question 💍 (kind of)</h2>
+  <p>Will you be my Valentine?</p>
+  <img src="https://drive.google.com/thumbnail?id=1QgGVR4vkngHy5yC8WWnLOYeOW3_SQvr4&sz=w1000" alt="Be my valentine" />
+
+  <div id="final-container">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 😢</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+  function startMusicAndGo(n) {
+    const audio = document.getElementById('bg-music');
+    audio.play().catch(() => {});
+    goTo(n);
+  }
+
+  function goTo(n) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('p' + n).classList.add('active');
+
+    if (n === 7) {
+      setTimeout(setInitialPositions, 50);
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const container = document.getElementById('final-container');
+
+  function setInitialPositions() {
+    const cw = container.offsetWidth;
+    const ch = container.offsetHeight;
+
+    yesBtn.style.left = (cw * 0.35) + 'px';
+    yesBtn.style.top = (ch * 0.35) + 'px';
+
+    noBtn.style.left = (cw * 0.55) + 'px';
+    noBtn.style.top = (ch * 0.35) + 'px';
+  }
+
+  setInitialPositions();
+  window.addEventListener('resize', setInitialPositions);
+
+  function moveYes() {
+    const maxX = container.offsetWidth - yesBtn.offsetWidth - 8;
+    const maxY = container.offsetHeight - yesBtn.offsetHeight - 8;
+
+    const newX = Math.random() * maxX;
+    const newY = Math.random() * maxY;
+
+    yesBtn.style.left = newX + 'px';
+    yesBtn.style.top = newY + 'px';
+  }
+
+  yesBtn.addEventListener('mouseover', moveYes);
+  yesBtn.addEventListener('touchstart', moveYes);
+
+  function hideNo() {
+    noBtn.style.opacity = '0';
+    setTimeout(() => { noBtn.style.display = 'none'; }, 120);
+  }
+
+  noBtn.addEventListener('mouseover', hideNo);
+  noBtn.addEventListener('touchstart', hideNo);
+
+  yesBtn.addEventListener('click', () => {
+    alert("YAY! 💖 Happy Valentine's Day!");
+  });
+</script>
+
+</body>
+</html>
